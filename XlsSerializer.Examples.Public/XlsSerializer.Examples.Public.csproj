@@ -66,6 +66,9 @@
     <Compile Include="CellLabels\CellLabelsExample.cs" />
     <Compile Include="CellLabels\SheetWithCellLabels.cs" />
     <Compile Include="CollectionOfStructuredModels\CollectionItem.cs" />
+    <Compile Include="InheritedProperties\Model.cs" />
+    <Compile Include="InheritedProperties\ModelBase.cs" />
+    <Compile Include="InheritedProperties\ModelInheritanceExample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectionOfStructuredModels\CollectionOfModelsExample.cs" />
     <Compile Include="SimpleCollection\SimpleCollectionSerializationExample.cs" />

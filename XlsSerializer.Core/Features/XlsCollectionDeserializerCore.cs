@@ -12,7 +12,7 @@ namespace XlsSerializer.Core.Features
 
             var sheetRow = (mapping.HasHeader ? 2 : 1) + startRow;
 
-            for (; sheetRow <= source.Dimension.End.Row; sheetRow++)
+            for (; sheetRow <= (source.Dimension?.End?.Row ?? 0); sheetRow++)
             {
                 object item = null;
 
