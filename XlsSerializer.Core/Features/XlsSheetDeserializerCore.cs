@@ -5,7 +5,7 @@ namespace XlsSerializer.Core.Features
 {
     internal static class XlsSheetDeserializerCore
     {
-        public static void Deserialize(object modelInstance, ExcelWorksheet source)
+        public static void Deserialize(object modelInstance, ExcelWorksheet source, XlsxSerializerSettings settings)
         {
             if (modelInstance == null)
             {
@@ -22,7 +22,7 @@ namespace XlsSerializer.Core.Features
                 }
 
                 var sourceCell = source.Cells[rule.CellLocation.Row.Value + 1, rule.CellLocation.Column + 1];
-                rule.ReadCell(() => modelInstance, sourceCell);
+                rule.ReadCell(() => modelInstance, sourceCell, settings);
             }
         }
     }

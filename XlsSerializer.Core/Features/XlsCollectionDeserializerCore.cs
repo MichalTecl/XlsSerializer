@@ -6,7 +6,7 @@ namespace XlsSerializer.Core.Features
 {
     internal static class XlsCollectionDeserializerCore
     {
-        public static IEnumerable DeserializeCollection(Type collectionItemType, ExcelWorksheet source, Func<object> newItemFactory, int startRow, int startColumn)
+        public static IEnumerable DeserializeCollection(Type collectionItemType, ExcelWorksheet source, Func<object> newItemFactory, int startRow, int startColumn, XlsxSerializerSettings settings)
         {
             var mapping = DocumentMapper.GetMapping(collectionItemType);
 
@@ -21,7 +21,7 @@ namespace XlsSerializer.Core.Features
                     var cell = source.Cells[sheetRow, cellMapping.CellLocation.Column + 1 + startColumn];
                     try
                     {
-                        var readingResult = cellMapping.ReadCell(item == null ? newItemFactory : () => item, cell);
+                        var readingResult = cellMapping.ReadCell(item == null ? newItemFactory : () => item, cell, settings);
 
                         if ((item == null) || (readingResult != null))
                         {

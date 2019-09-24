@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+
+using XlsSerializer.Core;
 using XlsSerializer.Core.Features;
 using XlsSerializer.UnitTests.TestModels;
 using XlsSerializer.UnitTests.TestUtils;
@@ -15,10 +17,10 @@ namespace XlsSerializer.UnitTests
 
             var deserialized = new TwoSheetsWorkbook();
 
-            ExcelPackageSaveAndLoad.WorkbookTest(wb => { XlsWorkbookSerializerCore.SerializeWorkbook(wbModel, wb); },
+            ExcelPackageSaveAndLoad.WorkbookTest(wb => { XlsWorkbookSerializerCore.SerializeWorkbook(wbModel, wb, new XlsxSerializerSettings()); },
                 wb =>
                 {
-                    XlsWorkbookDeserializerCore.DeserializeWorkbook(deserialized, wb);
+                    XlsWorkbookDeserializerCore.DeserializeWorkbook(deserialized, wb, new XlsxSerializerSettings());
                 }, 
                 "workbook1.xlsx");
 
@@ -30,7 +32,7 @@ namespace XlsSerializer.UnitTests
         {
             var model = new ListValidationCase();
 
-            ExcelPackageSaveAndLoad.WorkbookTest(wb => { XlsWorkbookSerializerCore.SerializeWorkbook(model, wb); },
+            ExcelPackageSaveAndLoad.WorkbookTest(wb => { XlsWorkbookSerializerCore.SerializeWorkbook(model, wb, new XlsxSerializerSettings()); },
                 wb =>
                 {
                 },

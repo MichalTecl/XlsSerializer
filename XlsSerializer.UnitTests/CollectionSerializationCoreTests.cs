@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
+using XlsSerializer.Core;
 using XlsSerializer.Core.Features;
 using XlsSerializer.UnitTests.TestModels;
 using XlsSerializer.UnitTests.TestUtils;
@@ -21,12 +23,12 @@ namespace XlsSerializer.UnitTests
 
             ExcelPackageSaveAndLoad.SaveAndLoadSheet(sheetToWrite =>
                 {
-                    XlsCollectionSerializerCore.SerializeCollection(
-                        typeof(ComplexCollectionItemModel), 
+                    XlsCollectionSerializerCore.SerializeCollection(typeof(ComplexCollectionItemModel),
                         sourceCollection,
-                        sheetToWrite, 
-                        startRow, 
-                        startCol);
+                        sheetToWrite,
+                        startRow,
+                        startCol,
+                        new XlsxSerializerSettings());
                 },
                 sheetToLoad =>
                 {
@@ -35,7 +37,7 @@ namespace XlsSerializer.UnitTests
                             sheetToLoad, 
                             () => new ComplexCollectionItemModel(), 
                             startRow, 
-                            startCol)
+                            startCol, new XlsxSerializerSettings())
                         .OfType<ComplexCollectionItemModel>()
                         .ToList();
                 }, $"collection_{startRow}_{startCol}.xlsx");
@@ -71,11 +73,11 @@ namespace XlsSerializer.UnitTests
 
             ExcelPackageSaveAndLoad.SaveAndLoadSheet(s =>
             {
-                XlsCollectionSerializerCore.SerializeCollection(typeof(string), source, s, 0,0);
+                XlsCollectionSerializerCore.SerializeCollection(typeof(string), source, s, 0,0, new XlsxSerializerSettings());
             },
                 s =>
                 {
-                    deserialized = XlsCollectionDeserializerCore.DeserializeCollection(typeof(string), s, null, 0, 0)
+                    deserialized = XlsCollectionDeserializerCore.DeserializeCollection(typeof(string), s, null, 0, 0, new XlsxSerializerSettings())
                         .OfType<string>().ToList();
                 });
 

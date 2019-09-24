@@ -75,7 +75,7 @@ namespace XlsSerializer.Core.Mapping
             return result;
         }
 
-        public void WriteCell(object propertyOwner, ExcelRange cell)
+        public void WriteCell(object propertyOwner, ExcelRange cell, XlsxSerializerSettings settings)
         {
             foreach (var cellSetup in m_cellSetups)
             {
@@ -84,11 +84,11 @@ namespace XlsSerializer.Core.Mapping
             
             foreach (var setter in m_cellValueAccessors)
             {
-                setter.WriteCellValue(BoundProperty, propertyOwner, cell);
+                setter.WriteCellValue(BoundProperty, propertyOwner, cell, settings);
             }
         }
 
-        public object ReadCell(Func<object> propertyOwnerFactory, ExcelRange cell)
+        public object ReadCell(Func<object> propertyOwnerFactory, ExcelRange cell, XlsxSerializerSettings settings)
         {
             if (cell.Value == null)
             {
@@ -99,7 +99,7 @@ namespace XlsSerializer.Core.Mapping
 
             foreach (var setter in m_cellValueAccessors)
             {
-                setter.ReadCellValue(cell, owner, BoundProperty);
+                setter.ReadCellValue(cell, owner, BoundProperty, settings);
             }
 
             return owner;

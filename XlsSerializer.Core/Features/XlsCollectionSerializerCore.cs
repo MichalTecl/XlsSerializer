@@ -6,7 +6,7 @@ namespace XlsSerializer.Core.Features
 {
     internal static class XlsCollectionSerializerCore
     {
-        public static void SerializeCollection(Type itemType, IEnumerable collection, ExcelWorksheet target, int startRow, int startColumn)
+        public static void SerializeCollection(Type itemType, IEnumerable collection, ExcelWorksheet target, int startRow, int startColumn, XlsxSerializerSettings settings)
         {
             var mapping = DocumentMapper.GetMapping(itemType);
 
@@ -27,7 +27,7 @@ namespace XlsSerializer.Core.Features
             {
                 foreach (var columnMapping in mapping.Values)
                 {
-                    columnMapping.WriteCell(item, target.Cells[sheetRow, columnMapping.CellLocation.Column + 1 + startColumn]);
+                    columnMapping.WriteCell(item, target.Cells[sheetRow, columnMapping.CellLocation.Column + 1 + startColumn], settings);
                 }
 
                 sheetRow++;

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using OfficeOpenXml;
 using XlsSerializer.Core.Features;
+using XlsSerializer.Core.SettingsElements;
 using XlsSerializer.Core.Utils;
 
 namespace XlsSerializer.Core.Attributes.Contract
@@ -18,50 +19,59 @@ namespace XlsSerializer.Core.Attributes.Contract
 
         public int ProcessingOrder => 0;
 
-        public virtual void WriteCellValue(PropertyInfo sourceProperty, object owner, ExcelRange cell)
+        public virtual void WriteCellValue(PropertyInfo sourceProperty, object owner, ExcelRange cell, XlsxSerializerSettings settings)
         {
-            if (!sourceProperty.CanRead || (!string.IsNullOrWhiteSpace(cell.Formula)) || (!string.IsNullOrWhiteSpace(cell.FormulaR1C1)))
+            Func<PropertyAndOwnerInstance, object> defaultValueReader = (pao) =>
             {
-                return;
-            }
-            
-            var value = sourceProperty.GetValue(owner, null);
-            if (value == null)
-            {
-                return;
-            }
+                if (!pao.Property.CanRead || (!string.IsNullOrWhiteSpace(cell.Formula)) || (!string.IsNullOrWhiteSpace(cell.FormulaR1C1)))
+                {
+                    return null;
+                }
 
-            cell.Value = value;
+                return pao.Property.GetValue(pao.PropertyOwner, null);
+            };
+
+            Action<Type, object, ExcelRange, IValueConverter> defaultWrite = (t, val, cel, con) => cell.Value = con.ToCellValue(t, val);
+
+            settings.CellWriterInterceptor.Write(owner, sourceProperty, defaultValueReader, cell, defaultWrite, settings);
         }
 
-        public void ReadCellValue(ExcelRange cell, object owner, PropertyInfo targetProperty)
+        public void ReadCellValue(ExcelRange cell, object owner, PropertyInfo targetProperty, XlsxSerializerSettings settings)
         {
-            
             if (ReflectionHelper.GetIsCollection(targetProperty.PropertyType, out var collectionItemType, true))
             {
                 var collection = XlsCollectionDeserializerCore.DeserializeCollection(collectionItemType, cell.Worksheet,
-                    () => Activator.CreateInstance(collectionItemType), cell.Start.Row - 1, cell.Start.Column - 1).OfType<object>().ToList();
+                    () => Activator.CreateInstance(collectionItemType), cell.Start.Row - 1, cell.Start.Column - 1, settings).OfType<object>().ToList();
 
                 ReflectionHelper.PopulateCollectionProperty(owner, targetProperty, collection);
 
                 return;
             }
 
-            if (!targetProperty.CanWrite)
+            var pao = new PropertyAndOwnerInstance(targetProperty, owner);
+
+            Func<PropertyAndOwnerInstance, bool> defaultShouldProcessCellDecision = (p) => p.Property.CanWrite;
+
+            Func<ExcelRange, Type, PropertyAndOwnerInstance, IValueConverter, object> defaultConvertCellValueToType = (cl, tp, p, converter) =>
             {
-                return;
-            }
+                var cellValue = cl.Value;
+                if (cellValue == null)
+                {
+                    return null;
+                }
 
-            var cellValue = cell.Value;
+                return converter.FromCellValue(tp, cellValue); 
+            };
 
-            if (cellValue == null)
-            {
-                return;
-            }
+            Action<PropertyAndOwnerInstance, object> defaultPropertySetter = (p, v) => p.Property.SetValue(p.PropertyOwner, v);
 
-            var convertedValue = Convert.ChangeType(cellValue, TryGetUnderlyingType(targetProperty.PropertyType));
-
-            targetProperty.SetValue(owner, convertedValue, null);
+            settings.CellReaderInterceptor.ReadCell(cell,
+                owner,
+                targetProperty,
+                defaultShouldProcessCellDecision,
+                defaultConvertCellValueToType,
+                defaultPropertySetter,
+                settings);
         }
 
         public void Apply(PropertyInfo boundProperty, ExcelRange cell)
@@ -70,16 +80,6 @@ namespace XlsSerializer.Core.Attributes.Contract
             {
                 cell.Style.Numberformat.Format = NumberFormat;
             }
-        }
-
-        private static Type TryGetUnderlyingType(Type type)
-        {
-            if (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>))
-            {
-                return Nullable.GetUnderlyingType(type);
-            }
-
-            return type;
         }
     }
 }

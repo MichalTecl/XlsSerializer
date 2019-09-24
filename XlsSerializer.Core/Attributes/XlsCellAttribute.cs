@@ -30,16 +30,16 @@ namespace XlsSerializer.Core.Attributes
         public int ColumnIndex { get; }
         public int RowIndex { get; }
 
-        public override void WriteCellValue(PropertyInfo sourceProperty, object owner, ExcelRange cell)
+        public override void WriteCellValue(PropertyInfo sourceProperty, object owner, ExcelRange cell, XlsxSerializerSettings settings)
         {
             if (ReflectionHelper.GetIsCollection(sourceProperty.PropertyType, out var collectionItemType, true))
             {
                 var value = sourceProperty.GetValue(owner, null) as IEnumerable ?? new object[0];
-                XlsCollectionSerializerCore.SerializeCollection(collectionItemType, value, cell.Worksheet, cell.Start.Row - 1, cell.Start.Column - 1);
+                XlsCollectionSerializerCore.SerializeCollection(collectionItemType, value, cell.Worksheet, cell.Start.Row - 1, cell.Start.Column - 1, settings);
                 return;
             }
 
-            base.WriteCellValue(sourceProperty, owner, cell);
+            base.WriteCellValue(sourceProperty, owner, cell, settings);
         }
     }
 }

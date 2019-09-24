@@ -10,12 +10,12 @@ namespace XlsSerializer.Core.Mapping
         
         public CellLocation CellLocation { get; }
         public PropertyInfo BoundProperty { get; }
-        public void WriteCell(object propertyOwner, ExcelRange cell)
+        public void WriteCell(object propertyOwner, ExcelRange cell, XlsxSerializerSettings settings)
         {
             cell.Value = propertyOwner;
         }
-
-        public object ReadCell(Func<object> propertyOwner, ExcelRange cell)
+        
+        public object ReadCell(Func<object> propertyOwner, ExcelRange cell, XlsxSerializerSettings settings)
         {
             return cell.Value;
         }

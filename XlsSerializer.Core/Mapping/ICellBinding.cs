@@ -9,8 +9,8 @@ namespace XlsSerializer.Core.Mapping
         bool HasHeader { get; }
         CellLocation CellLocation { get; }
         PropertyInfo BoundProperty { get; }
-        void WriteCell(object propertyOwner, ExcelRange cell);
-        object ReadCell(Func<object> propertyOwnerFactory, ExcelRange cell);
+        void WriteCell(object propertyOwner, ExcelRange cell, XlsxSerializerSettings settings);
+        object ReadCell(Func<object> propertyOwnerFactory, ExcelRange cell, XlsxSerializerSettings settings);
 
         void SetupHeader(ExcelRange headerCell);
     }

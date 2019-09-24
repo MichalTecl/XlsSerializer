@@ -97,5 +97,23 @@ namespace XlsSerializer.Core.Utils
 
             return ConvertGenericCollectionToArray(result, itemType);
         }
+
+        public static Type TryUnwrapUnderlyingType(Type type)
+        {
+            TryUnwrapUnderlyingType(type, out var t);
+            return t;
+        }
+
+        public static bool TryUnwrapUnderlyingType(Type type, out Type underlying)
+        {
+            if (type.IsGenericType && (type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+            {
+                underlying = Nullable.GetUnderlyingType(type);
+                return true;
+            }
+
+            underlying = type;
+            return false;
+        }
     }
 }

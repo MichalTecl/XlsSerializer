@@ -9,7 +9,16 @@ namespace XlsSerializer.Core
 {
     public class XlsxSerializer : IXlsxSerializer
     {
-        public static readonly IXlsxSerializer Instance = new XlsxSerializer(); 
+        public static readonly IXlsxSerializer Instance = new XlsxSerializer();
+
+        private readonly XlsxSerializerSettings m_settings;
+
+        public XlsxSerializer():this(new XlsxSerializerSettings()) { }
+
+        public XlsxSerializer(XlsxSerializerSettings settings)
+        {
+            m_settings = settings;
+        }
 
         public void Serialize(object model, ExcelPackage package)
         {
@@ -20,11 +29,11 @@ namespace XlsSerializer.Core
 
             if (ReflectionHelper.GetIsCollection(model.GetType(), out var itemType, true))
             {
-                XlsCollectionSerializerCore.SerializeCollection(itemType, (IEnumerable)model, XlsSheetSerializerCore.GetDefaultWorksheet(package), 0,0);
+                XlsCollectionSerializerCore.SerializeCollection(itemType, (IEnumerable)model, XlsSheetSerializerCore.GetDefaultWorksheet(package), 0,0, m_settings);
                 return;
             }
 
-            XlsWorkbookSerializerCore.SerializeWorkbook(model, package.Workbook);
+            XlsWorkbookSerializerCore.SerializeWorkbook(model, package.Workbook, m_settings);
         }
 
         public void Serialize(object model, string fileName)
@@ -58,15 +67,15 @@ namespace XlsSerializer.Core
             {
                 var rawCollection = XlsCollectionDeserializerCore.DeserializeCollection(itemType,
                     XlsSheetSerializerCore.GetDefaultWorksheet(package), () => Activator.CreateInstance(itemType), 0,
-                    0);
+                    0, m_settings);
 
                 ReflectionHelper.PopulateCollection(rawCollection, model);
 
                 return;
             }
 
-            XlsWorkbookDeserializerCore.DeserializeWorkbook(model, package.Workbook);
-            XlsSheetDeserializerCore.Deserialize(model, XlsSheetSerializerCore.GetDefaultWorksheet(package));
+            XlsWorkbookDeserializerCore.DeserializeWorkbook(model, package.Workbook, m_settings);
+            XlsSheetDeserializerCore.Deserialize(model, XlsSheetSerializerCore.GetDefaultWorksheet(package), m_settings);
         }
 
         public void DeserializeTo(object model, string fileName)

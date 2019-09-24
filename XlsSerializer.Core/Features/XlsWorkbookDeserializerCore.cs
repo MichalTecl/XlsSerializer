@@ -8,7 +8,7 @@ namespace XlsSerializer.Core.Features
 {
     internal class XlsWorkbookDeserializerCore
     {
-        public static void DeserializeWorkbook(object model, ExcelWorkbook source)
+        public static void DeserializeWorkbook(object model, ExcelWorkbook source, XlsxSerializerSettings settings)
         {
             if (model == null)
             {
@@ -25,7 +25,7 @@ namespace XlsSerializer.Core.Features
 
                 if (sheetAssociation.BoundProperty == null)
                 {
-                    XlsSheetDeserializerCore.Deserialize(model, sheet);
+                    XlsSheetDeserializerCore.Deserialize(model, sheet, settings);
                     continue;
                 }
 
@@ -33,7 +33,7 @@ namespace XlsSerializer.Core.Features
                     true))
                 {
                     var collection = XlsCollectionDeserializerCore
-                        .DeserializeCollection(itemType, sheet, () => Activator.CreateInstance(itemType), 0, 0)
+                        .DeserializeCollection(itemType, sheet, () => Activator.CreateInstance(itemType), 0, 0, settings)
                         .OfType<object>().ToList();
 
                     ReflectionHelper.PopulateCollectionProperty(model, sheetAssociation.BoundProperty, collection);
@@ -54,7 +54,7 @@ namespace XlsSerializer.Core.Features
                     sheetAssociation.BoundProperty.SetValue(model, sheetModel, null);
                 }
 
-                XlsSheetDeserializerCore.Deserialize(sheetModel, sheet);
+                XlsSheetDeserializerCore.Deserialize(sheetModel, sheet, settings);
             }
         }
     }

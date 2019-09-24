@@ -3,6 +3,8 @@ using System.IO;
 using System.Linq;
 using Newtonsoft.Json;
 using OfficeOpenXml;
+
+using XlsSerializer.Core;
 using XlsSerializer.Core.Features;
 using XlsSerializer.UnitTests.TestModels;
 using XlsSerializer.UnitTests.TestUtils;
@@ -35,7 +37,7 @@ namespace XlsSerializer.UnitTests
             {
                 var sheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
 
-                XlsSheetSerializerCore.Serialize(typeof(SimpleSheet), model, sheet);
+                XlsSheetSerializerCore.Serialize(typeof(SimpleSheet), model, sheet, new XlsxSerializerSettings());
 
                 excelPackage.SaveAs(new FileInfo("testsheet1.xlsx"));
             }
@@ -43,7 +45,7 @@ namespace XlsSerializer.UnitTests
             var deserialized = new SimpleSheet();
             using (var excelPackage = new ExcelPackage(new FileInfo("testsheet1.xlsx")))
             {
-               XlsSheetDeserializerCore.Deserialize(deserialized, excelPackage.Workbook.Worksheets["Sheet1"]);
+               XlsSheetDeserializerCore.Deserialize(deserialized, excelPackage.Workbook.Worksheets["Sheet1"], new XlsxSerializerSettings());
             }
 
             Assert.Equal(model.Logic, deserialized.Logic);
@@ -70,10 +72,10 @@ namespace XlsSerializer.UnitTests
 
             ExcelPackageSaveAndLoad.SaveAndLoadSheet(s =>
             {
-                XlsSheetSerializerCore.Serialize(typeof(SimpleSheetWithPrimitiveCollection), model, s);
+                XlsSheetSerializerCore.Serialize(typeof(SimpleSheetWithPrimitiveCollection), model, s, new XlsxSerializerSettings());
             }, s =>
             {
-                XlsSheetDeserializerCore.Deserialize(deserialized, s);
+                XlsSheetDeserializerCore.Deserialize(deserialized, s, new XlsxSerializerSettings());
             }, "withPrimitiveCollection.xlsx");
 
             Assert.Equal(model.Text, deserialized.Text);
@@ -93,11 +95,11 @@ namespace XlsSerializer.UnitTests
 
             ExcelPackageSaveAndLoad.SaveAndLoadSheet(s =>
             {
-                XlsSheetSerializerCore.Serialize(typeof(SimpleSheetWithTwoCollections), source, s);
+                XlsSheetSerializerCore.Serialize(typeof(SimpleSheetWithTwoCollections), source, s, new XlsxSerializerSettings());
 
             }, s =>
             {
-                XlsSheetDeserializerCore.Deserialize(deserialized, s);
+                XlsSheetDeserializerCore.Deserialize(deserialized, s, new XlsxSerializerSettings());
             }, 
                 "twocollections.xlsx");
 
@@ -124,10 +126,10 @@ namespace XlsSerializer.UnitTests
             var deserialized = new SheetWithTwoComplexCollections();
 
             ExcelPackageSaveAndLoad.SaveAndLoadSheet(
-                s => { XlsSheetSerializerCore.Serialize(typeof(SheetWithTwoComplexCollections), obj, s); },
+                s => { XlsSheetSerializerCore.Serialize(typeof(SheetWithTwoComplexCollections), obj, s, new XlsxSerializerSettings()); },
                 s =>
                 {
-                    XlsSheetDeserializerCore.Deserialize(deserialized, s);
+                    XlsSheetDeserializerCore.Deserialize(deserialized, s, new XlsxSerializerSettings());
                 }, "twocompcol.xlsx");
 
             Assert.Equal(JsonConvert.SerializeObject(obj), JsonConvert.SerializeObject(deserialized));

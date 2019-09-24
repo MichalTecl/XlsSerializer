@@ -8,7 +8,7 @@ namespace XlsSerializer.Core.Features
     {
         public const string DefaultSheetName = "Sheet1";
 
-        public static void Serialize(Type modelType, object model, ExcelWorksheet target)
+        public static void Serialize(Type modelType, object model, ExcelWorksheet target, XlsxSerializerSettings settings)
         {
             var mapping = DocumentMapper.GetMapping(modelType);
 
@@ -21,7 +21,7 @@ namespace XlsSerializer.Core.Features
 
                 var cell = target.Cells[m.CellLocation.Row.Value + 1, m.CellLocation.Column + 1];
 
-                m.WriteCell(model, cell);
+                m.WriteCell(model, cell, settings);
             }
         }
 

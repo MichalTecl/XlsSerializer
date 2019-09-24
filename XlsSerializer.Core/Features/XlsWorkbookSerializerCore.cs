@@ -7,7 +7,7 @@ namespace XlsSerializer.Core.Features
 {
     internal static class XlsWorkbookSerializerCore
     {
-        public static void SerializeWorkbook(object model, ExcelWorkbook target)
+        public static void SerializeWorkbook(object model, ExcelWorkbook target, XlsxSerializerSettings settings)
         {
             if (model == null)
             {
@@ -34,7 +34,7 @@ namespace XlsSerializer.Core.Features
                 if (sheetAssociation.BoundProperty == null) 
                 {
                     sheetModelValue = model;
-                    XlsSheetSerializerCore.Serialize(model.GetType(), model, sheet);
+                    XlsSheetSerializerCore.Serialize(model.GetType(), model, sheet, settings);
                     continue;
                 }
 
@@ -47,11 +47,11 @@ namespace XlsSerializer.Core.Features
                 if (ReflectionHelper.GetIsCollection(sheetAssociation.BoundProperty.PropertyType,
                     out var collectionItemType, true))
                 {
-                    XlsCollectionSerializerCore.SerializeCollection(collectionItemType, (IEnumerable)sheetModelValue, sheet, 0,0);
+                    XlsCollectionSerializerCore.SerializeCollection(collectionItemType, (IEnumerable)sheetModelValue, sheet, 0,0, settings);
                 }
                 else
                 {
-                    XlsSheetSerializerCore.Serialize(sheetAssociation.BoundProperty.PropertyType, sheetModelValue, sheet);
+                    XlsSheetSerializerCore.Serialize(sheetAssociation.BoundProperty.PropertyType, sheetModelValue, sheet, settings);
                 }
             }
         }

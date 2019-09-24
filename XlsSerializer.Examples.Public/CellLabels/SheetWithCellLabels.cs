@@ -1,4 +1,6 @@
-﻿using XlsSerializer.Core.Attributes;
+﻿using OfficeOpenXml.Style;
+
+using XlsSerializer.Core.Attributes;
 
 namespace XlsSerializer.Examples.Public.CellLabels
 {
@@ -8,12 +10,13 @@ namespace XlsSerializer.Examples.Public.CellLabels
     {
         [XlsCell("B1")]
         [Label("First Label")]
+        //Overwrites label style for the property
+        [LabelStyle(HorizontalAlignment = ExcelHorizontalAlignment.Right, FontStyle = FontStyle.Strike, BackgroundColor = "#0000ff", Color = "White")]
         public string Cell1 { get; set; }
 
         [XlsCell("C4")]
-        [Label("Second Label", LabelLocation.Top)]
         //Sets label style for this property
-        [LabelStyle(FontStyle = FontStyle.Strike, BackgroundColor = "#0000ff", Color = "White")]
+        [LabelStyle()]
         public string Cell2 { get; set; }
     }
 }
