@@ -2,6 +2,7 @@
 
 namespace XlsSerializer.Examples.Public.CustomValueConversion
 {
+    //#start_publishing
     public class QuestionSheetItem
     {
         [XlsColumn("A")]

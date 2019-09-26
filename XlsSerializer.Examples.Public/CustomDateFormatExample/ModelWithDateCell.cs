@@ -4,6 +4,7 @@ using XlsSerializer.Core.Attributes;
 
 namespace XlsSerializer.Examples.Public.CustomDateFormatExample
 {
+    //#start_publishing
     public class ModelWithDateCells
     {
         [XlsCell("A1")]

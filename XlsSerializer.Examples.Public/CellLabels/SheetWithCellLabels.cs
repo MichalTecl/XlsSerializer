@@ -4,6 +4,7 @@ using XlsSerializer.Core.Attributes;
 
 namespace XlsSerializer.Examples.Public.CellLabels
 {
+    //#start_publishing
     //Sets default label style for the sheet
     [LabelStyle(FontStyle = FontStyle.Italic, BackgroundColor = "Silver")]
     public class SheetWithCellLabels

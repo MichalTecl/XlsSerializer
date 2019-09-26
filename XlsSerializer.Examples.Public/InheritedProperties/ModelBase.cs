@@ -2,6 +2,7 @@
 
 namespace XlsSerializer.Examples.Public.InheritedProperties
 {
+    //#start_publishing
     public abstract class ModelBase 
     {
         [XlsCell("A1")]

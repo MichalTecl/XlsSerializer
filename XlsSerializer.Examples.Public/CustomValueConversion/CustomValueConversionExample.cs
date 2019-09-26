@@ -11,6 +11,7 @@ namespace XlsSerializer.Examples.Public.CustomValueConversion
     [ExampleTest(5001, "Custom Value Conversion")]
     public class CustomValueConversionExample : ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new List<QuestionSheetItem>

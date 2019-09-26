@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{6D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XlsSerializer.Examples.Runner", "XlsSerializer.Examples.Runner\XlsSerializer.Examples.Runner.csproj", "{0A2216E4-F34D-4214-81F3-0B056C69781E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XlsSerializer.Examples.Web", "XlsSerializer.Examples.Web\XlsSerializer.Examples.Web.csproj", "{8DC895CC-5752-4815-94D6-4F1DE20B15DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{0A2216E4-F34D-4214-81F3-0B056C69781E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A2216E4-F34D-4214-81F3-0B056C69781E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A2216E4-F34D-4214-81F3-0B056C69781E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DC895CC-5752-4815-94D6-4F1DE20B15DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DC895CC-5752-4815-94D6-4F1DE20B15DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DC895CC-5752-4815-94D6-4F1DE20B15DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DC895CC-5752-4815-94D6-4F1DE20B15DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -49,6 +55,7 @@ Global
 		{4ADB2908-5AE0-4A2F-84C3-56FFD878D482} = {6D3FC282-EA75-46AC-A0D2-999B0E647190}
 		{D39320C0-D5CC-49EF-8025-DF8372D53886} = {6D3FC282-EA75-46AC-A0D2-999B0E647190}
 		{0A2216E4-F34D-4214-81F3-0B056C69781E} = {6D3FC282-EA75-46AC-A0D2-999B0E647190}
+		{8DC895CC-5752-4815-94D6-4F1DE20B15DD} = {6D3FC282-EA75-46AC-A0D2-999B0E647190}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D385113F-6533-4267-9869-68A4E642E5DB}

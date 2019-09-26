@@ -4,6 +4,7 @@ using XlsSerializer.Core.SettingsElements;
 
 namespace XlsSerializer.Examples.Public.CustomValueConversion
 {
+    //#start_publishing
     public class CustomBoolTypeConverter : TypeConverterBase<bool?>
     {
         private const string c_yes = "YES";

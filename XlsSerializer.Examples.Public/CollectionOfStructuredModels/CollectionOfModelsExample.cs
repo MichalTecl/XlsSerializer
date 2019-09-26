@@ -9,6 +9,7 @@ namespace XlsSerializer.Examples.Public.CollectionOfStructuredModels
     [ExampleTest(10, "Collection of custom objects")]
     public class CollectionOfModelsExample : ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new List<CollectionItem>();

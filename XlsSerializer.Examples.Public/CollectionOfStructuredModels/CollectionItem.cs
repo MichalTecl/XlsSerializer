@@ -2,6 +2,7 @@
 
 namespace XlsSerializer.Examples.Public.CollectionOfStructuredModels
 {
+    //#start_publishing
     public class CollectionItem
     {
         //Please note that column index in the XlsColumnAttribute is zero-based

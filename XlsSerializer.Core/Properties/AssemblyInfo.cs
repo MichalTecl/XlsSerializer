@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XlsSerializer.Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Provides an easy way to serialize and deserialize .NET models to/from XLSX")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Michal Tecl")]
 [assembly: AssemblyProduct("XlsSerializer.Core")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © Michal Tecl  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

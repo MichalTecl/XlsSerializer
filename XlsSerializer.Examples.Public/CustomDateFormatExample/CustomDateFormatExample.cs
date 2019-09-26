@@ -16,6 +16,7 @@ namespace XlsSerializer.Examples.Public.CustomDateFormatExample
     [ExampleTest(5000, "Custom Date String format")]
     public class CustomDateFormatExample : ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new ModelWithDateCells

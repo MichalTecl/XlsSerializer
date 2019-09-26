@@ -1,0 +1,29 @@
+﻿.header {
+    position:absolute;
+    left:0; right:0;
+    height: 92px;
+}
+.index {
+    position:absolute;
+    left:0; top:92px; bottom: 0;
+    width: 178px;
+}
+.content {
+    position: absolute;
+    left:178px; top:92px; right:0; bottom:0;
+}
+
+.hidden { display: none;}
+
+.currentItem.indexItem {
+    font-weight: bold;
+}
+
+.sourceFileListItem.selectedItem {
+    font-weight: bold;
+}
+
+.pnlResult > iframe {
+    width: 100%;
+    min-height: 400px;
+}

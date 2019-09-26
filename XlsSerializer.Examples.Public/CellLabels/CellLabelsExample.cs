@@ -11,6 +11,7 @@ namespace XlsSerializer.Examples.Public.CellLabels
     [ExampleTest(1000, "Cell Labels")]
     public class CellLabelsExample : ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new SheetWithCellLabels

@@ -10,6 +10,7 @@ namespace XlsSerializer.Examples.Public.SimpleCollection
     [ExampleTest(1, "Simple Collection Serialization")]
     public class SimpleCollectionSerializationExample:ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new List<string>(100);

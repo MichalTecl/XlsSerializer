@@ -100,6 +100,7 @@ namespace XlsSerializer.Examples.Core
         private static string ReadCsFile(string fi)
         {
             var fileText = File.ReadAllText(fi);
+            fileText = SourceFileTransformer.Transform(fileText);
 
             return fileText;
         }

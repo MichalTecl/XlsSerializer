@@ -9,7 +9,7 @@ namespace XlsSerializer.UnitTests.TestModels
         [XlsCell(0, 0)]
         public List<CollectionItem> List1 { get; } = new List<CollectionItem>();
 
-        [XlsCell(20,3)]
+        [XlsCell(20,4)]
         public CollectionItem[] Array1 { get; set; }
 
         public static SheetWithTwoComplexCollections Setup()

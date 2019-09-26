@@ -15,6 +15,7 @@ namespace XlsSerializer.Examples.Public.InheritedProperties
     [ExampleTest(1000, "Inherited Model Properties")]
     public class ModelInheritanceExample : ExampleTestBase
     {
+        //#start_publishing
         protected override void Test(Stream target)
         {
             var model = new Model

@@ -1,0 +1,1 @@
+c:\utils\nuget pack "C:\Users\mtecl\Documents\GitHub\XlsSerializer\XlsSerializer\XlsSerializer.Core\XlsSerializer.Core.csproj" -IncludeReferencedProjects -Properties "Configuration=Release"

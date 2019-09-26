@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>XlsSerializer</title>
+    </head>
+    <body>
+
+        <div class="header">head</div>
+
+        <div class="index">
+            <!-- template of index item -->
+            <div class="hidden indexItem"><a href="%link%">%title%</a></div>
+        </div>
+
+        <div class="content">
+            <div class="pnlSources">
+                <div id="sourceFileList">
+                    <div class="hidden sourceFileListItem" data-filename="%fileName%">
+                        <a onclick="app.sourcesList.showFile('%fileName%')" >%fileName%</a>
+                    </div>
+                </div>
+                <pre id="sourceFileContent" class="prettyprint lang-cs"></pre>
+            </div>
+            <div class="pnlResult">
+                <iframe frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=97F66AD9218F058A%21114&authkey=%21AEUjcWiW425nzQs&em=2&AllowTyping=True&wdDownloadButton=True&wdInConfigurator=True"></iframe>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+        <script src="script/util.js"></script>
+        <script src="script/sourcesView.js"></script>
+        <script src="script/content.js"></script>
+        <script src="script/index.js"></script>
+        <link href="style.css" rel="stylesheet" />
+
+    </body>
+</html>

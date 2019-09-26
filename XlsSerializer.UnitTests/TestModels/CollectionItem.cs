@@ -17,6 +17,9 @@ namespace XlsSerializer.UnitTests.TestModels
         [XlsColumn(2, "ValueTwice")]
         public int Calculated { get; set; }
 
+        [XlsColumn("D", "Nullable")]
+        public int? NullbableValue { get; set; }
+
         public static ICollection<CollectionItem> Generate(int count, ICollection<CollectionItem> target = null)
         {
             target = target ?? new List<CollectionItem>(count);
@@ -25,7 +28,8 @@ namespace XlsSerializer.UnitTests.TestModels
                target.Add(new CollectionItem
                 {
                     Index = i,
-                    Value = $"item_{i}"
+                    Value = $"item_{i}",
+                    NullbableValue = (i % 2) == 0 ? (int?)null : i
                 });
             }
 

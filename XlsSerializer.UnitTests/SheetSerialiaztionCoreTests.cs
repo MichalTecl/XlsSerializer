@@ -117,7 +117,8 @@ namespace XlsSerializer.UnitTests
                 obj.List1.Add(new CollectionItem()
                 {
                     Index = i,
-                    Value = $"item_{i}"
+                    Value = $"item_{i}",
+                    NullbableValue = (i % 2) == 0 ? (int?)null : i 
                 });
             }
 

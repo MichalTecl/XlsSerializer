@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace XlsSerializer.Examples.Runner
         {
             var assembly = typeof(SimpleCollectionSerializationExample).Assembly;
 
-            ExamplesLauncher.Launch(assembly, @"C:\Users\mtecl\Documents\GitHub\XlsSerializer\XlsSerializer\XlsSerializer.Examples.Public", "EXAMPLES");
+            var cdir = Directory.GetCurrentDirectory(); //C:\Users\mtecl\Documents\GitHub\XlsSerializer\XlsSerializer\XlsSerializer.Examples.Runner\bin\Debug
+
+            ExamplesLauncher.Launch(assembly, 
+                Path.Combine(cdir, @"..\..\..\XlsSerializer.Examples.Public"), 
+                Path.Combine(cdir, @"..\..\..\XlsSerializer.Examples.Web\data"));
         }
     }
 }
