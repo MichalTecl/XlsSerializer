@@ -13,7 +13,7 @@ namespace XlsSerializer.Examples.Core
             using (var strm = new MemoryStream())
             {
                 Test(strm);
-
+                
                 return strm.GetBuffer();
             }
         }

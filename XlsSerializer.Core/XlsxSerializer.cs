@@ -74,8 +74,12 @@ namespace XlsSerializer.Core
                 return;
             }
 
-            XlsWorkbookDeserializerCore.DeserializeWorkbook(model, package.Workbook, m_settings);
-            XlsSheetDeserializerCore.Deserialize(model, XlsSheetSerializerCore.GetDefaultWorksheet(package), m_settings);
+            if (!XlsWorkbookDeserializerCore.DeserializeWorkbook(model, package.Workbook, m_settings))
+            {
+                XlsSheetDeserializerCore.Deserialize(model,
+                    XlsSheetSerializerCore.GetDefaultWorksheet(package),
+                    m_settings);
+            }
         }
 
         public void DeserializeTo(object model, string fileName)

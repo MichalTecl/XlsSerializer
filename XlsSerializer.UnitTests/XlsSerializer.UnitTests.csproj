@@ -70,6 +70,7 @@
     <Compile Include="CollectionSerializationCoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReflectionHelperTests.cs" />
+    <Compile Include="RunExamplesAsTests.cs" />
     <Compile Include="SheetSerialiaztionCoreTests.cs" />
     <Compile Include="TestModels\CollectionItem.cs" />
     <Compile Include="TestModels\ComplexCollectionItemModel.cs" />
@@ -96,6 +97,14 @@
     <ProjectReference Include="..\XlsSerializer.Core\XlsSerializer.Core.csproj">
       <Project>{8F4E688A-74C0-40F9-B4B0-79728B5B94C3}</Project>
       <Name>XlsSerializer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XlsSerializer.Examples.Core\XlsSerializer.Examples.Core.csproj">
+      <Project>{4ADB2908-5AE0-4A2F-84C3-56FFD878D482}</Project>
+      <Name>XlsSerializer.Examples.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\XlsSerializer.Examples.Public\XlsSerializer.Examples.Public.csproj">
+      <Project>{D39320C0-D5CC-49EF-8025-DF8372D53886}</Project>
+      <Name>XlsSerializer.Examples.Public</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

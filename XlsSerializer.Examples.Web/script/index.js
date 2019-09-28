@@ -10,9 +10,10 @@ app.index.load = app.index.load || function () {
     var renderIndex = function(index) {
         var leftMenu = $(".index");
         var itemTemplateHtml = leftMenu.find(".indexItem")[0].outerHTML;
-
-        var currentKey = index[0].key;
+        
         var urlParams = new URLSearchParams(window.location.search);
+
+        var currentKey = null;
 
         for (const [key, value] of urlParams) {
             currentKey = currentKey || key;
@@ -20,6 +21,8 @@ app.index.load = app.index.load || function () {
                 break;
             }
         }
+
+        currentKey = currentKey || index[0].Key;
 
         var template = new ElementTemplate(".index>.indexItem");
 

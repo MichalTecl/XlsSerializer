@@ -71,11 +71,20 @@
     <Compile Include="CustomValueConversion\CustomBoolTypeConverter.cs" />
     <Compile Include="CustomValueConversion\CustomValueConversionExample.cs" />
     <Compile Include="CustomValueConversion\QuestionSheetItem.cs" />
+    <Compile Include="Formulas\CollectionItemWithFormula.cs" />
+    <Compile Include="Formulas\FormulasExample.cs" />
+    <Compile Include="Formulas\SheetWithFormulas.cs" />
     <Compile Include="InheritedProperties\Model.cs" />
     <Compile Include="InheritedProperties\ModelBase.cs" />
     <Compile Include="InheritedProperties\ModelInheritanceExample.cs" />
+    <Compile Include="MultipleSheetsModel\MultipleSheetsExample.cs" />
+    <Compile Include="MultipleSheetsModel\SecondSheetModel.cs" />
+    <Compile Include="MultipleSheetsModel\FirstSheetModel.cs" />
+    <Compile Include="MultipleSheetsModel\WorkbookModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CollectionOfStructuredModels\CollectionOfModelsExample.cs" />
+    <Compile Include="SheetsWithStaticCells\SheetModel.cs" />
+    <Compile Include="SheetsWithStaticCells\SheetWithStaticCellsExample.cs" />
     <Compile Include="SimpleCollection\SimpleCollectionSerializationExample.cs" />
     <Compile Include="XlsSerializerInstantiation\XlsSerializerInstantiationExample.cs" />
   </ItemGroup>
@@ -95,6 +104,7 @@
   <ItemGroup>
     <Analyzer Include="..\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

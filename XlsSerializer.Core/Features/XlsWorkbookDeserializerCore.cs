@@ -8,13 +8,14 @@ namespace XlsSerializer.Core.Features
 {
     internal class XlsWorkbookDeserializerCore
     {
-        public static void DeserializeWorkbook(object model, ExcelWorkbook source, XlsxSerializerSettings settings)
+        public static bool DeserializeWorkbook(object model, ExcelWorkbook source, XlsxSerializerSettings settings)
         {
             if (model == null)
             {
                 throw new ArgumentNullException(nameof(model));
             }
 
+            var mainsheetProcessed = false;
             foreach (var sheetAssociation in SheetAssociation.GetSheetAssociations(model.GetType()))
             {
                 var sheet = source.Worksheets[sheetAssociation.SheetName];
@@ -25,6 +26,7 @@ namespace XlsSerializer.Core.Features
 
                 if (sheetAssociation.BoundProperty == null)
                 {
+                    mainsheetProcessed = true;
                     XlsSheetDeserializerCore.Deserialize(model, sheet, settings);
                     continue;
                 }
@@ -56,6 +58,8 @@ namespace XlsSerializer.Core.Features
 
                 XlsSheetDeserializerCore.Deserialize(sheetModel, sheet, settings);
             }
+
+            return mainsheetProcessed;
         }
     }
 }

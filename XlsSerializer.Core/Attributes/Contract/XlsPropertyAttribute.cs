@@ -31,7 +31,23 @@ namespace XlsSerializer.Core.Attributes.Contract
                 return pao.Property.GetValue(pao.PropertyOwner, null);
             };
 
-            Action<Type, object, ExcelRange, IValueConverter> defaultWrite = (t, val, cel, con) => cell.Value = con.ToCellValue(t, val);
+            Action<Type, object, ExcelRange, IValueConverter> defaultWrite = (t, val, cel, con) =>
+            {
+                var formula = cell.Formula;
+                var formulaRC = cell.FormulaR1C1;
+
+                cell.Value = con.ToCellValue(t, val);
+
+                if (!string.IsNullOrWhiteSpace(formula))
+                {
+                    cell.Formula = formula;
+                }
+
+                if (!string.IsNullOrWhiteSpace(formulaRC))
+                {
+                    cell.FormulaR1C1 = formulaRC;
+                }
+            };
 
             settings.CellWriterInterceptor.Write(owner, sourceProperty, defaultValueReader, cell, defaultWrite, settings);
         }
