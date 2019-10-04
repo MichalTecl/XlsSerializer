@@ -65,7 +65,7 @@
     <Compile Include="Attributes\Contract\XlsPropertyAttribute.cs" />
     <Compile Include="Attributes\LabelLocation.cs" />
     <Compile Include="Attributes\LabelStyleAttribute.cs" />
-    <Compile Include="SettingsElements\Defaults\DateStringConvertor.cs" />
+    <Compile Include="SettingsElements\Defaults\DateConvertor.cs" />
     <Compile Include="SettingsElements\Defaults\DefaultCellReaderInterceptor.cs" />
     <Compile Include="SettingsElements\Defaults\DefaultCellWriterInterceptor.cs" />
     <Compile Include="SettingsElements\ICellReaderInterceptor.cs" />

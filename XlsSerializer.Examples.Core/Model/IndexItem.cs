@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XlsSerializer.Examples.Core.Model
+﻿namespace XlsSerializer.Examples.Core.Model
 {
     public class IndexItem
     {

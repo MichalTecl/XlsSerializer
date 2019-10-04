@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using OfficeOpenXml;
+
 using XlsSerializer.Core.SettingsElements.Defaults;
 using XlsSerializer.Core.Utils;
 
@@ -16,7 +18,7 @@ namespace XlsSerializer.Core.SettingsElements
         {
             var defaultConverters = new Dictionary<Type, ITypeConverter>
             {
-                [typeof(DateTime)] = new DateStringConvertor()
+                [typeof(DateTime)] = new DateConvertor()
             };
 
             Default = new ValueConverter(defaultConverters);
@@ -27,7 +29,7 @@ namespace XlsSerializer.Core.SettingsElements
             m_converters = new Dictionary<Type, ITypeConverter>(converters);
         }
 
-        public object ToCellValue(Type valueType, object input)
+        public object ToCellValue(Type valueType, object input, ExcelRange cell)
         {
             valueType = valueType ?? input?.GetType();
 
@@ -38,12 +40,12 @@ namespace XlsSerializer.Core.SettingsElements
 
             if (m_converters.TryGetValue(valueType, out var converter))
             {
-                return converter.ToCellValue(input);
+                return converter.ToCellValue(input, cell);
             }
 
             if (ReflectionHelper.TryUnwrapUnderlyingType(valueType, out var underlying))
             {
-                return ToCellValue(underlying, input);
+                return ToCellValue(underlying, input, cell);
             }
 
             return input;

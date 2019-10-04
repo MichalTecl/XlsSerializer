@@ -5,6 +5,7 @@ using XlsSerializer.Core.Attributes.Contract;
 
 namespace XlsSerializer.Core.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class FormulaAttribute : Attribute, ICanSetupCell
     {
         private readonly string m_formula;

@@ -1,9 +1,12 @@
-﻿using OfficeOpenXml;
+﻿using System;
+
+using OfficeOpenXml;
 using OfficeOpenXml.DataValidation.Contracts;
 using XlsSerializer.Core.Attributes.Contract;
 
 namespace XlsSerializer.Core.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public class ListValidationAttribute : ValidationAttributeBase
     {
         private readonly string m_range;

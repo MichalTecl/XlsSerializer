@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
+﻿using System.IO;
 
 using XlsSerializer.Core;
 using XlsSerializer.Examples.Core;

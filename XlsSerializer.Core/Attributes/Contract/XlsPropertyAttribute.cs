@@ -36,7 +36,7 @@ namespace XlsSerializer.Core.Attributes.Contract
                 var formula = cell.Formula;
                 var formulaRC = cell.FormulaR1C1;
 
-                cell.Value = con.ToCellValue(t, val);
+                cell.Value = con.ToCellValue(t, val, cell);
 
                 if (!string.IsNullOrWhiteSpace(formula))
                 {

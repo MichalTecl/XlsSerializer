@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 
+using OfficeOpenXml;
+
 using XlsSerializer.Core.SettingsElements;
 using XlsSerializer.Core.SettingsElements.Defaults;
 
@@ -27,9 +29,9 @@ namespace XlsSerializer.Core
 
         public ICellReaderInterceptor CellReaderInterceptor { get; set; } = DefaultCellReaderInterceptor.Instance;
         
-        public object ToCellValue(Type valueType, object input)
+        public object ToCellValue(Type valueType, object input, ExcelRange cell)
         {
-            return m_valueConverter.ToCellValue(valueType, input);
+            return m_valueConverter.ToCellValue(valueType, input, cell);
         }
 
         public object FromCellValue(Type desiredType, object input)

@@ -8,7 +8,6 @@
 
         for (var key in replacements) {
             var replacement = replacements[key];
-
             code = code.split(key).join(replacement);
         }
 

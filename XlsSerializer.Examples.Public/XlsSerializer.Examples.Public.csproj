@@ -66,8 +66,6 @@
     <Compile Include="CellLabels\CellLabelsExample.cs" />
     <Compile Include="CellLabels\SheetWithCellLabels.cs" />
     <Compile Include="CollectionOfStructuredModels\CollectionItem.cs" />
-    <Compile Include="CustomDateFormatExample\CustomDateFormatExample.cs" />
-    <Compile Include="CustomDateFormatExample\ModelWithDateCell.cs" />
     <Compile Include="CustomValueConversion\CustomBoolTypeConverter.cs" />
     <Compile Include="CustomValueConversion\CustomValueConversionExample.cs" />
     <Compile Include="CustomValueConversion\QuestionSheetItem.cs" />
@@ -77,6 +75,8 @@
     <Compile Include="InheritedProperties\Model.cs" />
     <Compile Include="InheritedProperties\ModelBase.cs" />
     <Compile Include="InheritedProperties\ModelInheritanceExample.cs" />
+    <Compile Include="ListValidation\ListValidationExample.cs" />
+    <Compile Include="ListValidation\SheetWithListValidation.cs" />
     <Compile Include="MultipleSheetsModel\MultipleSheetsExample.cs" />
     <Compile Include="MultipleSheetsModel\SecondSheetModel.cs" />
     <Compile Include="MultipleSheetsModel\FirstSheetModel.cs" />

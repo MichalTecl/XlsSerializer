@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using XlsSerializer.UnitTests.TestModels;
-using XlsSerializer.UnitTests.TestUtils;
+
 using Xunit;
 
 namespace XlsSerializer.UnitTests

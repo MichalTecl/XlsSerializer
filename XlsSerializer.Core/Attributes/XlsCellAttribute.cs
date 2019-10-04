@@ -8,6 +8,7 @@ using XlsSerializer.Core.Utils;
 
 namespace XlsSerializer.Core.Attributes
 {
+    [AttributeUsage(AttributeTargets.Property)]
     public sealed class XlsCellAttribute : XlsPropertyAttribute, IHasColumnIndex, IHasRowIndex
     {
         public XlsCellAttribute(string cellAddress, string numberFormat = null) : this(CellAddress.Parse(cellAddress), numberFormat) { }

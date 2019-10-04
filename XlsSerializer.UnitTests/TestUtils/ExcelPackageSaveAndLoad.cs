@@ -2,8 +2,6 @@
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
-using OfficeOpenXml.FormulaParsing.Excel.Functions.Text;
-using XlsSerializer.Core;
 
 namespace XlsSerializer.UnitTests.TestUtils
 {

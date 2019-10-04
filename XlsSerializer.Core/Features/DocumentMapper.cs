@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using XlsSerializer.Core.Attributes;
+
 using XlsSerializer.Core.Mapping;
 
 namespace XlsSerializer.Core.Features

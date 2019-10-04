@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace XlsSerializer.Core.Attributes
+﻿namespace XlsSerializer.Core.Attributes
 {
     public enum LabelLocation 
     {

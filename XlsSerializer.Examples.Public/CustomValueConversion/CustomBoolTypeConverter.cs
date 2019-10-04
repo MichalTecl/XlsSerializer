@@ -1,5 +1,7 @@
 ﻿using System;
 
+using OfficeOpenXml;
+
 using XlsSerializer.Core.SettingsElements;
 
 namespace XlsSerializer.Examples.Public.CustomValueConversion
@@ -11,7 +13,7 @@ namespace XlsSerializer.Examples.Public.CustomValueConversion
         private const string c_no = "NO";
         private const string c_null = "Unknown";
 
-        protected override object ConvertToCellValue(bool? source)
+        protected override object ConvertToCellValue(bool? source, ExcelRange cell)
         {
             switch (source)
             {
